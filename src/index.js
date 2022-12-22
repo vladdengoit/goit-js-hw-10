@@ -10,6 +10,7 @@ inputCountry.addEventListener('input', debounce(funcInput, DEBOUNCE_DELAY));
 
 function funcInput() {
   const valueInput = inputCountry.value.trim();
+  clearInput();
   if (!valueInput) {
     return;
   }
@@ -18,8 +19,6 @@ function funcInput() {
     if (!countries) {
       return;
     }
-    oneCountry.innerHTML = '';
-    listCountry.innerHTML = '';
     if (countries.length > 10) {
       Notify.info('Too many matches found. Please enter a more specific name.');
     } else if (countries.length > 1 && countries.length <= 10) {
@@ -51,4 +50,8 @@ function renderOneCountry(arrayCountries) {
     })
     .join('');
   oneCountry.insertAdjacentHTML('beforeend', resultMapfor1);
+}
+function clearInput() {
+  oneCountry.innerHTML = '';
+  listCountry.innerHTML = '';
 }
